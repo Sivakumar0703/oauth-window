@@ -12,8 +12,10 @@
   <script>
     document.getElementById("sendToken").onclick = () => {
       const token = "fake-access-token";
-      const origin = window.opener.location.origin;
-      window.opener.postMessage({ accessToken: token }, origin);
+      // const origin = window.opener.location.origin;
+      const urlParams = new URLSearchParams(window.location.search);
+      const openerOrigin = urlParams.get("origin");
+      window.opener.postMessage({ accessToken: token }, openerOrigin);
       window.close(); 
     };
   </script>
